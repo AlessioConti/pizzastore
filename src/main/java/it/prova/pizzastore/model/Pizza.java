@@ -25,7 +25,7 @@ public class Pizza {
 	@Column(name="ingredienti")
 	private String ingredienti;
 	@Column(name="prezzoBase")
-	private int prezzoBase;
+	private Integer prezzoBase;
 	@Column(name="attivo")
 	private boolean attivo;
 	
@@ -34,15 +34,22 @@ public class Pizza {
 	
 	public Pizza() {}
 
-	public Pizza(String descrizione, String ingredienti, int prezzoBase, boolean attivo) {
+	public Pizza(String descrizione, String ingredienti, Integer prezzoBase, boolean attivo) {
 		super();
 		this.descrizione = descrizione;
 		this.ingredienti = ingredienti;
 		this.prezzoBase = prezzoBase;
 		this.attivo = attivo;
 	}
+	
+	public Pizza(String descrizione, String ingredienti, Integer prezzoBase) {
+		super();
+		this.descrizione = descrizione;
+		this.ingredienti = ingredienti;
+		this.prezzoBase = prezzoBase;
+	}
 
-	public Pizza(Long id, String descrizione, String ingredienti, int prezzoBase, boolean attivo, Set<Ordine> ordini) {
+	public Pizza(Long id, String descrizione, String ingredienti, Integer prezzoBase, boolean attivo, Set<Ordine> ordini) {
 		super();
 		this.id = id;
 		this.descrizione = descrizione;
@@ -80,7 +87,7 @@ public class Pizza {
 		return prezzoBase;
 	}
 
-	public void setPrezzoBase(int prezzoBase) {
+	public void setPrezzoBase(Integer prezzoBase) {
 		this.prezzoBase = prezzoBase;
 	}
 
