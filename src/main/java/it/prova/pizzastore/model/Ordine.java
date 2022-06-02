@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +30,14 @@ public class Ordine {
 	private Date data;
 	@Column(name="closed")
 	private boolean closed;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="cliente_id", nullable = false)
+	private Cliente cliente;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="utente_id", nullable = false)
+	private Utente utente;
 	
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
 	@JoinTable(name = "ordine_pizza", joinColumns = @JoinColumn(name = "ordine_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "ID"))
