@@ -27,7 +27,7 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 	
 	public void contextInitialized(ServletContextEvent sce) {
 		try {
-			entityManagerFactory = Persistence.createEntityManagerFactory("raccoltafilm_unit");
+			entityManagerFactory = Persistence.createEntityManagerFactory("pizzastore_unit");
 			// questa chiamata viene fatta qui per semplicità ma in genere è meglio trovare
 			// altri modi per fare init
 			initAdminUserAndRuoli();
