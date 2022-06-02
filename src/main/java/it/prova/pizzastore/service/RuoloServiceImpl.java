@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 
 import it.prova.pizzastore.dao.RuoloDAO;
 import it.prova.pizzastore.model.Ruolo;
-import it.prova.raccoltafilm.web.listener.LocalEntityManagerFactoryListener;
+import it.prova.pizzastore.web.listener.LocalEntityManagerFactoryListener;
 
 public class RuoloServiceImpl implements RuoloService {
 
