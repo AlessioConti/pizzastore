@@ -13,7 +13,6 @@ import org.apache.commons.lang3.StringUtils;
 import it.prova.pizzastore.model.Utente;
 import it.prova.pizzastore.service.MyServiceFactory;
 
-
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,11 +38,29 @@ public class LoginServlet extends HttpServlet {
 		try {
 			Utente utenteInstance = MyServiceFactory.getUtenteServiceInstance().accedi(loginInput, passwordInput);
 			if (utenteInstance == null) {
+				
 				request.setAttribute("errorMessage", "Utente non trovato.");
 				destinazione = "login.jsp";
-			} else {
+				
+			} else if (utenteInstance.isAdmin()) {
+				
 				request.getSession().setAttribute("userInfo", utenteInstance);
-				destinazione = "home";
+				destinazione = "/admin/index.jsp";
+				
+			} else if (utenteInstance.isPizzaiolo()) {
+				
+				request.getSession().setAttribute("userInfo", utenteInstance);
+				destinazione = "/pizzaiolo/index.jsp";
+				
+			} else if (utenteInstance.isFattorino()) {
+				
+				request.getSession().setAttribute("userInfo", utenteInstance);
+				destinazione = "/fattorino/index.jsp";
+				
+			} else {
+				
+				destinazione = "login.jsp";
+				request.setAttribute("errorMessage", "Attenzione! Si è verificato un errore.");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
