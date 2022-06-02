@@ -6,6 +6,7 @@ import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
 
+import it.prova.pizzastore.model.Cliente;
 import it.prova.pizzastore.model.Pizza;
 
 public class UtilityForm {
@@ -19,6 +20,17 @@ public class UtilityForm {
 	public static boolean validatePizzaBean(Pizza pizzaToBeValidated) {
 		if (StringUtils.isBlank(pizzaToBeValidated.getDescrizione())
 				|| StringUtils.isBlank(pizzaToBeValidated.getIngredienti()) || pizzaToBeValidated.getPrezzoBase() == 0)
+			return false;
+		return true;
+	}
+	
+	public static Cliente createClienteFromParas(String nomeParas, String cognomeParas, String indirizzoParas) {
+		Cliente result =new Cliente(nomeParas, cognomeParas, indirizzoParas);
+		return result;
+	}
+	
+	public static boolean validateClienteBean(Cliente clienteToBeValidated) {
+		if(StringUtils.isBlank(clienteToBeValidated.getNome()) || StringUtils.isBlank(clienteToBeValidated.getCognome()) || StringUtils.isAllBlank(clienteToBeValidated.getIndirizzo()))
 			return false;
 		return true;
 	}
