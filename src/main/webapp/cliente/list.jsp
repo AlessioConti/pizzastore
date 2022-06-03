@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="it" class="h-100" >
 	 <head>
@@ -51,9 +53,9 @@
 				                <tbody>
 				                	<c:forEach items="${clienti_list_attribute }" var="clientiItem">
 										<tr>
-											<td>${clientiItem.descrizione }</td>
-											<td>${clientiItem.ingredienti }</td>
-											<td>${clientiItem.prezzoBase }</td>
+											<td>${clientiItem.nome }</td>
+											<td>${clientiItem.cognome }</td>
+											<td>${clientiItem.indirizzo }</td>
 											<td>
 												<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaFilmServlet?idFilm=${clientiItem.id }">Visualizza</a>
 												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="laservletpermodificare">Edit</a>
