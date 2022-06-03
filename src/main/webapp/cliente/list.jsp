@@ -42,9 +42,9 @@
 				            <table class='table table-striped ' >
 				                <thead>
 				                    <tr>
-			                         	<th>Descrizione</th>
-				                        <th>Ingredienti</th>
-				                        <th>Prezzo Base</th>
+			                         	<th>Nome</th>
+				                        <th>Cognome</th>
+				                        <th>Indirizzo</th>
 				                        <th>Azioni</th>
 				                    </tr>
 				                </thead>

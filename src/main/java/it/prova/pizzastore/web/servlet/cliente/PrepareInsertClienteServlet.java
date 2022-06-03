@@ -7,35 +7,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.prova.pizzastore.model.Cliente;
+import it.prova.pizzastore.service.MyServiceFactory;
+
 /**
  * Servlet implementation class PrepareInsertClienteServlet
  */
 @WebServlet("/PrepareInsertClienteServlet")
 public class PrepareInsertClienteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PrepareInsertClienteServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		try {
+			//metto un bean 'vuoto' in request perché per la pagina risulta necessario
+			request.setAttribute("insert_cliente_attr", new Cliente());
+			// questo mi serve per la select di registi in pagina
+			request.setAttribute("clienti_list_attribute",
+					MyServiceFactory.getClienteServiceInstance().listAll());
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.getRequestDispatcher("home").forward(request, response);
+			return;
+		}
+
+		request.getRequestDispatcher("/cliente/insert.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
 
 }
