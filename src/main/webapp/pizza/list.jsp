@@ -59,7 +59,7 @@
 											<td>
 												<a class="btn  btn-sm btn-outline-secondary" href="ExecuteShowPizzaServlet?idPizza=${pizzaItem.id }">Visualizza</a>
 												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareUpdateClienteServlet?idPizza=${pizzaItem.id }">Edit</a>
-												<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteClienteServlet?idPizza=${pizzaItem.id }">Delete</a>
+												<a class="btn btn-outline-danger btn-sm" href="PrepareDeletePizzaServlet?idPizza=${pizzaItem.id }">Delete</a>
 											</td>
 										</tr>
 									</c:forEach>
