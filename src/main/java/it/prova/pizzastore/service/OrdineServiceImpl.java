@@ -130,5 +130,20 @@ public class OrdineServiceImpl implements OrdineService {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 		}
 	}
+	
+	public List<Ordine> findByExample(Ordine input) throws Exception{
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			ordineDAO.setEntityManager(entityManager);
+			
+			return ordineDAO.findByExample(input);
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
 
 }

@@ -55,6 +55,7 @@
 				        <a class="btn btn-primary btn-lg" href="ExecuteListPizzeServlet">Vai a Ricerca Pizze</a>
 				        <a class="btn btn-primary btn-lg" href="ExecuteListOrdiniServlet">Vai a Ricerca Ordini</a>
 				        <a class="btn btn-primary btn-lg" href="PrepareSearchPizzaServlet">Ricerca Pizza Da Esempio</a>
+				         <a class="btn btn-primary btn-lg" href="PrepareSearchOrdineServlet">Ricerca Ordine Da Esempio</a>
 				      </div>
 			    </div>
 			    
