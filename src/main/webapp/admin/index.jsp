@@ -53,6 +53,7 @@
 				        <h1 class="display-5 fw-bold">Benvenuto nella Solving Pizzeria</h1>
 				        <p class="col-md-8 fs-4">ADMIN PROVA </p>
 				        <a class="btn btn-primary btn-lg" href="ExecuteListClientiServlet">Vai a Ricerca Clienti</a>
+				        <a class="btn btn-primary btn-lg" href="PrepareSearchClienteServlet">Ricerca Cliente Singolo</a>
 				      </div>
 			    </div>
 			    

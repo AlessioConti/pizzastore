@@ -21,4 +21,6 @@ public interface ClienteService {
 	public List<Cliente> cercaClientiAttivi() throws Exception;
 	
 	public void disattivaCliente(Long id) throws Exception;
+	
+	public List<Cliente> findByExample(Cliente input) throws Exception;
 }

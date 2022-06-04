@@ -123,23 +123,38 @@ public class ClienteServiceImpl implements ClienteService {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 		}
 	}
-	
-	public void disattivaCliente(Long id) throws Exception{
+
+	public void disattivaCliente(Long id) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
 			entityManager.getTransaction().begin();
-			
+
 			clienteDAO.setEntityManager(entityManager);
-			
+
 			Cliente clienteDaDisattivare = clienteDAO.findOne(id).orElse(null);
-			if(clienteDaDisattivare == null)
+			if (clienteDaDisattivare == null)
 				throw new ElementNotFoundException("Cliente con id " + id + " non trovato");
 			clienteDAO.disattiva(clienteDaDisattivare);
-			
+
 			entityManager.getTransaction().commit();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+
+	public List<Cliente> findByExample(Cliente input) throws Exception {
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			clienteDAO.setEntityManager(entityManager);
+
+			return clienteDAO.findByExample(input);
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
