@@ -48,6 +48,12 @@ public class Pizza {
 		this.ingredienti = ingredienti;
 		this.prezzoBase = prezzoBase;
 	}
+	
+	public Pizza(String descrizione, String ingredienti) {
+		super();
+		this.descrizione = descrizione;
+		this.ingredienti = ingredienti;
+	}
 
 	public Pizza(Long id, String descrizione, String ingredienti, Integer prezzoBase, boolean attivo, Set<Ordine> ordini) {
 		super();
@@ -83,7 +89,7 @@ public class Pizza {
 		this.ingredienti = ingredienti;
 	}
 
-	public int getPrezzoBase() {
+	public Integer getPrezzoBase() {
 		return prezzoBase;
 	}
 
