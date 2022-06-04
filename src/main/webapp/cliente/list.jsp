@@ -59,7 +59,7 @@
 											<td>
 												<a class="btn  btn-sm btn-outline-secondary" href="ExecuteShowClienteServlet?idCliente=${clientiItem.id }">Visualizza</a>
 												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="laservletpermodificare">Edit</a>
-												<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteFilmServlet?idCliente=${clientiItem.id }">Delete</a>
+												<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteClienteServlet?idCliente=${clientiItem.id }">Delete</a>
 											</td>
 										</tr>
 									</c:forEach>

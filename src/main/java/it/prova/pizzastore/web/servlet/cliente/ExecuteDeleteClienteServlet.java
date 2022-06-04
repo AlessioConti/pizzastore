@@ -9,45 +9,37 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
-import it.prova.pizzastore.model.Cliente;
+import it.prova.pizzastore.exception.ElementNotFoundException;
 import it.prova.pizzastore.service.MyServiceFactory;
 
-@WebServlet("/ExecuteShowClienteServlet")
-public class ExecuteShowClienteServlet extends HttpServlet {
+@WebServlet("/ExecuteDeleteClienteServlet")
+public class ExecuteDeleteClienteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+       
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idClienteParam = request.getParameter("idCliente");
-
+		
 		if (!NumberUtils.isCreatable(idClienteParam)) {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}
+		
 		try {
-			Cliente clienteInstance = MyServiceFactory.getClienteServiceInstance()
-					.caricaSingoloElemento(Long.parseLong(idClienteParam));
-
-			if (clienteInstance == null) {
-				request.setAttribute("errorMessage", "Elemento non trovato.");
-				request.getRequestDispatcher("ExecuteListClientiServlet?operationResult=NOT_FOUND").forward(request,
-						response);
-				return;
-			}
-
-			request.setAttribute("show_cliente_attr", clienteInstance);
+			MyServiceFactory.getClienteServiceInstance().rimuovi(Long.parseLong(idClienteParam));
+		}catch (ElementNotFoundException e) {
+			request.getRequestDispatcher("ExecuteListClientiServlet?operationResult=NOT_FOUND").forward(request, response);
+			return;
 		} catch (Exception e) {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione si è verificato un errore. Si prega di riprovare");
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}
-
-		request.getRequestDispatcher("/cliente/show.jsp").forward(request, response);
+		
+		response.sendRedirect("ExecuteListClientiServlet?operationResult=SUCCESS");
 	}
 
 }

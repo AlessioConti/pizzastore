@@ -12,13 +12,11 @@ import org.apache.commons.lang3.math.NumberUtils;
 import it.prova.pizzastore.model.Cliente;
 import it.prova.pizzastore.service.MyServiceFactory;
 
-@WebServlet("/ExecuteShowClienteServlet")
-public class ExecuteShowClienteServlet extends HttpServlet {
+@WebServlet("/PrepareDeleteClienteServlet")
+public class PrepareDeleteClienteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idClienteParam = request.getParameter("idCliente");
 
 		if (!NumberUtils.isCreatable(idClienteParam)) {
@@ -38,7 +36,7 @@ public class ExecuteShowClienteServlet extends HttpServlet {
 				return;
 			}
 
-			request.setAttribute("show_cliente_attr", clienteInstance);
+			request.setAttribute("delete_cliente_attr", clienteInstance);
 		} catch (Exception e) {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			e.printStackTrace();
@@ -47,7 +45,6 @@ public class ExecuteShowClienteServlet extends HttpServlet {
 			return;
 		}
 
-		request.getRequestDispatcher("/cliente/show.jsp").forward(request, response);
+		request.getRequestDispatcher("/cliente/delete.jsp").forward(request, response);
 	}
-
 }
