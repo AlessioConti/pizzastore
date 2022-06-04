@@ -53,7 +53,7 @@
 				        <h1 class="display-5 fw-bold">Benvenuto nella Solving Pizzeria</h1>
 				        <p class="col-md-8 fs-4">PIZZAIOLO PROVA </p>
 				        <a class="btn btn-primary btn-lg" href="ExecuteListPizzeServlet">Vai a Ricerca Pizze</a>
-				        <a class="btn btn-primary btn-lg" href="PrepareSearchRegistaServlet">Vai a Ricerca Ordini</a>
+				        <a class="btn btn-primary btn-lg" href="ExecuteListOrdiniServlet">Vai a Ricerca Ordini</a>
 				      </div>
 			    </div>
 			    
