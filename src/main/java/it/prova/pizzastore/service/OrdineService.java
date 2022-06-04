@@ -17,4 +17,6 @@ public interface OrdineService {
 	public void inserisci(Ordine ordineInstance) throws Exception;
 	
 	public void rimuovi(Long idOrdine) throws Exception;
+	
+	public Ordine caricaElementoEager(Long id) throws Exception;
 }

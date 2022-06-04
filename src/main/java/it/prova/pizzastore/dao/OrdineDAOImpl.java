@@ -54,6 +54,11 @@ public class OrdineDAOImpl implements OrdineDAO {
 		this.entityManager = entityManager;
 	}
 	
+	public Optional<Ordine> findOneEager(Long id) {
+		return entityManager.createQuery("select o from Ordine o left join fetch o.cliente c left join fetch o.utente u where o.id=:idOrdine", Ordine.class)
+				.setParameter("idOrdine", id).getResultList().stream().findFirst();
+	}
+	
 	public List<Ordine> findByExample(Ordine example) throws Exception{
 		
 		Map<String, Object> paramaterMap = new HashMap<String, Object>();
