@@ -54,29 +54,29 @@ public class PizzaDAOImpl implements PizzaDAO {
 		this.entityManager = entityManager;
 	}
 	
-	public List<Pizza> findByExample(Pizza example) throws Exception{
+	public List<Pizza> findByExample(Pizza example) {
 		Map<String, Object> paramaterMap = new HashMap<String, Object>();
 		List<String> whereClauses = new ArrayList<String>();
 
-		StringBuilder queryBuilder = new StringBuilder("select p from Pizza p where p.id = p.id ");
-		
-		if(StringUtils.isNotEmpty(example.getDescrizione())) {
-			whereClauses.add(" p.descrizione like :descrizione");
-			paramaterMap.put("descrizione", "%" +example.getDescrizione() + "%");
+		StringBuilder queryBuilder = new StringBuilder("select p from Pizza p where p.attivo = 1 ");
+
+		if (StringUtils.isNotEmpty(example.getDescrizione())) {
+			whereClauses.add(" p.descrizione  like :descrizione ");
+			paramaterMap.put("descrizione", "%" + example.getDescrizione() + "%");
+		}
+		if (StringUtils.isNotEmpty(example.getIngredienti())) {
+			whereClauses.add(" p.ingredienti like :ingredienti ");
+			paramaterMap.put("ingredienti", "%" + example.getIngredienti() + "%");
 		}
 		
-		if(StringUtils.isNotEmpty(example.getIngredienti())) {
-			whereClauses.add(" p.ingredienti like :ingredienti");
-			paramaterMap.put("ingredienti", "%" +example.getIngredienti() + "%");
+		if (example.getPrezzoBase() != null && example.getPrezzoBase() > 0) {
+			whereClauses.add(" p.prezzoBase =:prezzoBase ");
+			paramaterMap.put("prezzoBase", example.getPrezzoBase());
 		}
-		
-		if(example.getPrezzoBase() != 0) {
-			whereClauses.add(" p.prezzoBase like :prezzo");
-			paramaterMap.put("prezzo", "%" + example.getPrezzoBase() + "%");
-		}
-		
-		queryBuilder.append(!whereClauses.isEmpty()?" and ":"");
+
+		queryBuilder.append(!whereClauses.isEmpty() ? " and " : "");
 		queryBuilder.append(StringUtils.join(whereClauses, " and "));
+
 		TypedQuery<Pizza> typedQuery = entityManager.createQuery(queryBuilder.toString(), Pizza.class);
 
 		for (String key : paramaterMap.keySet()) {

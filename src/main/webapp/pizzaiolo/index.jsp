@@ -54,6 +54,7 @@
 				        <p class="col-md-8 fs-4">PIZZAIOLO PROVA </p>
 				        <a class="btn btn-primary btn-lg" href="ExecuteListPizzeServlet">Vai a Ricerca Pizze</a>
 				        <a class="btn btn-primary btn-lg" href="ExecuteListOrdiniServlet">Vai a Ricerca Ordini</a>
+				        <a class="btn btn-primary btn-lg" href="PrepareSearchPizzaServlet">Ricerca Pizza Da Esempio</a>
 				      </div>
 			    </div>
 			    

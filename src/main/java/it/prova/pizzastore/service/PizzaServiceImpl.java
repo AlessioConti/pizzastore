@@ -12,7 +12,7 @@ import it.prova.pizzastore.web.listener.LocalEntityManagerFactoryListener;
 public class PizzaServiceImpl implements PizzaService {
 
 	private PizzaDAO pizzaDAO;
-	
+
 	@Override
 	public void setPizzaDAO(PizzaDAO pizzaDAO) {
 		this.pizzaDAO = pizzaDAO;
@@ -21,12 +21,12 @@ public class PizzaServiceImpl implements PizzaService {
 	@Override
 	public List<Pizza> listAll() throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
-		
+
 		try {
 			pizzaDAO.setEntityManager(entityManager);
-			
+
 			return pizzaDAO.list();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
@@ -37,12 +37,12 @@ public class PizzaServiceImpl implements PizzaService {
 	@Override
 	public Pizza caricaSingoloElemento(Long id) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
-		
+
 		try {
 			pizzaDAO.setEntityManager(entityManager);
-			
+
 			return pizzaDAO.findOne(id).orElse(null);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
@@ -53,16 +53,16 @@ public class PizzaServiceImpl implements PizzaService {
 	@Override
 	public void aggiorna(Pizza pizzaInstance) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
-		
+
 		try {
 			entityManager.getTransaction().begin();
-			
+
 			pizzaDAO.setEntityManager(entityManager);
-			
+
 			pizzaDAO.update(pizzaInstance);
-			
+
 			entityManager.getTransaction().commit();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			e.printStackTrace();
 			throw e;
@@ -74,14 +74,14 @@ public class PizzaServiceImpl implements PizzaService {
 	@Override
 	public void inserisci(Pizza pizzaInstance) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
-		
+
 		try {
 			entityManager.getTransaction().begin();
-			
+
 			pizzaDAO.setEntityManager(entityManager);
-			
+
 			pizzaDAO.insert(pizzaInstance);
-			
+
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
@@ -95,21 +95,36 @@ public class PizzaServiceImpl implements PizzaService {
 	@Override
 	public void rimuovi(Long idPizza) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
-		
+
 		try {
 			entityManager.getTransaction().begin();
-			
+
 			pizzaDAO.setEntityManager(entityManager);
-			
+
 			Pizza pizzaDelete = pizzaDAO.findOne(idPizza).orElse(null);
-			if(pizzaDelete == null)
-				throw new ElementNotFoundException("Pizza con Id "+idPizza+" non trovata");
-			
+			if (pizzaDelete == null)
+				throw new ElementNotFoundException("Pizza con Id " + idPizza + " non trovata");
+
 			pizzaDAO.delete(pizzaDelete);
-			
+
 			entityManager.getTransaction().commit();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+
+	public List<Pizza> findByExample(Pizza input) throws Exception {
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			pizzaDAO.setEntityManager(entityManager);
+
+			return pizzaDAO.findByExample(input);
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
