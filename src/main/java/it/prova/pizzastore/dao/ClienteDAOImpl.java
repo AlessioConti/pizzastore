@@ -21,6 +21,10 @@ public class ClienteDAOImpl implements ClienteDAO {
 	public List<Cliente> list() throws Exception {
 		return entityManager.createQuery("from Cliente", Cliente.class).getResultList();
 	}
+	
+	public List<Cliente> findAttivi() throws Exception{
+		return entityManager.createQuery("from Cliente c where c.attivo=1", Cliente.class).getResultList();
+	}
 
 	@Override
 	public Optional<Cliente> findOne(Long id) throws Exception {
@@ -83,6 +87,12 @@ public class ClienteDAOImpl implements ClienteDAO {
 		}
 
 		return typedQuery.getResultList();
+	}
+	
+	public Cliente disattiva(Cliente input) throws Exception{
+		input.setAttivo(false);
+		
+		return input;
 	}
 
 }

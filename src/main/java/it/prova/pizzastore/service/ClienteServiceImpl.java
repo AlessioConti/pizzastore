@@ -31,6 +31,21 @@ public class ClienteServiceImpl implements ClienteService {
 		}
 	}
 
+	public List<Cliente> cercaClientiAttivi() throws Exception {
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			clienteDAO.setEntityManager(entityManager);
+
+			return clienteDAO.findAttivi();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+
 	public Cliente caricaSingoloElemento(Long id) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
@@ -44,17 +59,17 @@ public class ClienteServiceImpl implements ClienteService {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 		}
 	}
-	
-	public void aggiorna(Cliente clienteInstance) throws Exception{
+
+	public void aggiorna(Cliente clienteInstance) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
 			entityManager.getTransaction().begin();
-			
+
 			clienteDAO.setEntityManager(entityManager);
-			
+
 			clienteDAO.update(clienteInstance);
-			
+
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
@@ -64,17 +79,41 @@ public class ClienteServiceImpl implements ClienteService {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 		}
 	}
-	
-	public void inserisci(Cliente clienteInstance) throws Exception{
+
+	public void inserisci(Cliente clienteInstance) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
 			entityManager.getTransaction().begin();
-			
+
 			clienteDAO.setEntityManager(entityManager);
-			
+
 			clienteDAO.insert(clienteInstance);
-			
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+
+	public void rimuovi(Long id) throws Exception {
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			entityManager.getTransaction().begin();
+
+			clienteDAO.setEntityManager(entityManager);
+
+			Cliente clienteDelete = clienteDAO.findOne(id).orElse(null);
+			if (clienteDelete == null)
+				throw new ElementNotFoundException("Cliente con id " + id + " non trovato");
+
+			clienteDAO.delete(clienteDelete);
+
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
@@ -85,7 +124,7 @@ public class ClienteServiceImpl implements ClienteService {
 		}
 	}
 	
-	public void rimuovi(Long id) throws Exception{
+	public void disattivaCliente(Long id) throws Exception{
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
@@ -93,11 +132,10 @@ public class ClienteServiceImpl implements ClienteService {
 			
 			clienteDAO.setEntityManager(entityManager);
 			
-			Cliente clienteDelete = clienteDAO.findOne(id).orElse(null);
-			if(clienteDelete == null)
-				throw new ElementNotFoundException("Cliente con id "+id+ " non trovato");
-			
-			clienteDAO.delete(clienteDelete);
+			Cliente clienteDaDisattivare = clienteDAO.findOne(id).orElse(null);
+			if(clienteDaDisattivare == null)
+				throw new ElementNotFoundException("Cliente con id " + id + " non trovato");
+			clienteDAO.disattiva(clienteDaDisattivare);
 			
 			entityManager.getTransaction().commit();
 		}catch (Exception e) {
@@ -108,5 +146,5 @@ public class ClienteServiceImpl implements ClienteService {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 		}
 	}
-	
+
 }

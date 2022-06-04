@@ -27,7 +27,7 @@ public class ExecuteDeleteClienteServlet extends HttpServlet {
 		}
 		
 		try {
-			MyServiceFactory.getClienteServiceInstance().rimuovi(Long.parseLong(idClienteParam));
+			MyServiceFactory.getClienteServiceInstance().disattivaCliente(Long.parseLong(idClienteParam));
 		}catch (ElementNotFoundException e) {
 			request.getRequestDispatcher("ExecuteListClientiServlet?operationResult=NOT_FOUND").forward(request, response);
 			return;

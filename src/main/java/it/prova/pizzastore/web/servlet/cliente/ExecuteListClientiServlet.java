@@ -29,7 +29,7 @@ public class ExecuteListClientiServlet extends HttpServlet {
 			if (StringUtils.isNotBlank(operationResult) && operationResult.equalsIgnoreCase("NOT_FOUND"))
 				request.setAttribute("errorMessage", "Elemento non trovato.");
 
-			request.setAttribute("clienti_list_attribute", MyServiceFactory.getClienteServiceInstance().listAll());
+			request.setAttribute("clienti_list_attribute", MyServiceFactory.getClienteServiceInstance().cercaClientiAttivi());
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
