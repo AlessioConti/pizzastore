@@ -39,7 +39,7 @@ public class OrdineDAOImpl implements OrdineDAO {
 	public void insert(Ordine input) throws Exception {
 		if(input == null)
 			throw new Exception("Problema valore in input");
-		entityManager.persist(input);
+		entityManager.merge(input);
 	}
 
 	@Override

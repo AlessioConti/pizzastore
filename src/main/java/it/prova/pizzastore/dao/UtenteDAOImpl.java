@@ -6,6 +6,8 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import javax.persistence.Query;
+
 import it.prova.pizzastore.model.Ruolo;
 import it.prova.pizzastore.model.StatoUtente;
 import it.prova.pizzastore.model.Utente;
@@ -86,6 +88,11 @@ public class UtenteDAOImpl implements UtenteDAO {
 		query.setParameter("password", password);
 		query.setParameter("statoUtente", StatoUtente.ATTIVO);
 		return query.getResultStream().findFirst();
+	}
+	
+	public List<Utente> findAllFattorini() throws Exception{
+		Query q = entityManager.createNativeQuery("select * from utente u right join utente_ruolo ur ON u.id=ur.utente_id inner join ruolo r on ur.ruolo_id=r.id WHERE r.id=3");
+		return q.getResultList();
 	}
 
 }

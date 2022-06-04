@@ -73,16 +73,15 @@ public class OrdineServiceImpl implements OrdineService {
 	@Override
 	public void inserisci(Ordine ordineInstance) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
-		
+
 		try {
 			entityManager.getTransaction().begin();
-			
+
 			ordineDAO.setEntityManager(entityManager);
-			
 			ordineDAO.insert(ordineInstance);
-			
+
 			entityManager.getTransaction().commit();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			e.printStackTrace();
 			throw e;

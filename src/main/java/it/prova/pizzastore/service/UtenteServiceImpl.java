@@ -192,5 +192,21 @@ public class UtenteServiceImpl implements UtenteService {
 		}
 
 	}
+	
+	public List<Utente> cercaTuttiFattorini() throws Exception{
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			utenteDAO.setEntityManager(entityManager);
+			
+			return utenteDAO.findAllFattorini();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+
 
 }

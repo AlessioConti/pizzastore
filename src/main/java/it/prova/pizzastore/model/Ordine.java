@@ -138,6 +138,17 @@ public class Ordine {
 		this.utente = utente;
 	}
 	
-	
+	public void sommaPrezziPizza() {
+		this.costoTotale = 0;
+		
+		if (this.pizze == null || this.pizze.isEmpty()) {
+			return;
+		}
+		else {
+			for (Pizza pizzaItem : pizze) {
+				costoTotale += pizzaItem.getPrezzoBase();
+			}
+		}
+	}
 	
 }

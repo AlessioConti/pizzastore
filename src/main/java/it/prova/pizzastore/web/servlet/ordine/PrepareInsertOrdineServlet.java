@@ -7,35 +7,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.prova.pizzastore.model.Ordine;
+import it.prova.pizzastore.service.MyServiceFactory;
+
 /**
  * Servlet implementation class PrepareInsertOrdineServlet
  */
 @WebServlet("/PrepareInsertOrdineServlet")
 public class PrepareInsertOrdineServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PrepareInsertOrdineServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			// metto un bean 'vuoto' in request perché per la pagina risulta necessario
+			request.setAttribute("insert_ordine_attr", new Ordine());
+			// questo mi serve per la select di registi in pagina
+			request.setAttribute("ordini_list_attribute", MyServiceFactory.getOrdineServiceInstance().listAll());
+			request.setAttribute("lista_pizze", MyServiceFactory.getPizzaServiceInstance().listAll());
+			request.setAttribute("lista_fattorini", MyServiceFactory.getUtenteServiceInstance().listAll());
+			request.setAttribute("lista_clienti", MyServiceFactory.getClienteServiceInstance().listAll());
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.getRequestDispatcher("home").forward(request, response);
+			return;
+		}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.getRequestDispatcher("/ordine/insert.jsp").forward(request, response);
 	}
 
 }
