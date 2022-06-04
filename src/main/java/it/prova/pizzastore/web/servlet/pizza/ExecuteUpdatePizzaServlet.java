@@ -1,4 +1,4 @@
-package it.prova.pizzastore.web.servlet.cliente;
+package it.prova.pizzastore.web.servlet.pizza;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,41 +9,41 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
-import it.prova.pizzastore.model.Cliente;
+import it.prova.pizzastore.model.Pizza;
 import it.prova.pizzastore.service.MyServiceFactory;
 import it.prova.pizzastore.utility.UtilityForm;
 
-@WebServlet("/ExecuteUpdateClienteServlet")
-public class ExecuteUpdateClienteServlet extends HttpServlet {
+@WebServlet("/ExecuteUpdatePizzaServlet")
+public class ExecuteUpdatePizzaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String idClienteParam = request.getParameter("idCliente");
+		String idPizza = request.getParameter("idPizza");
 		
-		if (!NumberUtils.isCreatable(idClienteParam)) {
+		if (!NumberUtils.isCreatable(idPizza)) {
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}
 		
-		String nomeParam = request.getParameter("nome");
-		String cognomeParam = request.getParameter("cognome");
-		String indirizzoParam = request.getParameter("indirizzo");
+		String descrizioneParam = request.getParameter("descrizione");
+		String ingredientiParam = request.getParameter("ingredienti");
+		String prezzoParam = request.getParameter("prezzoBase");
 		
-		Cliente clienteAggiornato = UtilityForm.createClienteFromParas(nomeParam, cognomeParam, indirizzoParam);
-		clienteAggiornato.setId(Long.parseLong(idClienteParam));
-		clienteAggiornato.setAttivo(true);
+		Pizza pizzaInstance = UtilityForm.createPizzaFromParas(descrizioneParam, ingredientiParam, prezzoParam);
+		pizzaInstance.setId(Long.parseLong(idPizza));
+		pizzaInstance.setAttivo(true);
 		
-		if(!UtilityForm.validateClienteBean(clienteAggiornato)) {
-			request.setAttribute("update_cliente_attr", clienteAggiornato);
+		if(!UtilityForm.validatePizzaBean(pizzaInstance)) {
+			request.setAttribute("update_pizza_attr", pizzaInstance);
 			request.setAttribute("errorMessage", "Attenzione, errore nella creazione del cliente. Riprovare.");
-			request.getRequestDispatcher("/cliente/edit.jsp").forward(request, response);
+			request.getRequestDispatcher("/pizza/edit.jsp").forward(request, response);
 			return;
 		}
 		
 		try {
-			MyServiceFactory.getClienteServiceInstance().aggiorna(clienteAggiornato);
-			request.setAttribute("clienti_list_attribute", MyServiceFactory.getClienteServiceInstance().cercaClientiAttivi());
+			MyServiceFactory.getPizzaServiceInstance().aggiorna(pizzaInstance);
+			request.setAttribute("pizze_list_attribute", MyServiceFactory.getPizzaServiceInstance().listAll());
 			request.setAttribute("successMessage", "Operazione effettuata con successo");
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -52,7 +52,7 @@ public class ExecuteUpdateClienteServlet extends HttpServlet {
 			return;
 		}
 		
-		request.getRequestDispatcher("/cliente/list.jsp").forward(request, response);
+		request.getRequestDispatcher("/pizza/list.jsp").forward(request, response);
 	}
 
 }
