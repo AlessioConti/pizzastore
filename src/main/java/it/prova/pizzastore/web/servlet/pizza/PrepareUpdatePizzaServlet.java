@@ -21,7 +21,7 @@ public class PrepareUpdatePizzaServlet extends HttpServlet {
 		String idPizza = request.getParameter("idPizza");
 
 		if (!NumberUtils.isCreatable(idPizza)) {
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione, ID non valido/non presente!");
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}

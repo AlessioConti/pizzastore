@@ -22,7 +22,7 @@ public class ExecuteUpdatePizzaServlet extends HttpServlet {
 		String idPizza = request.getParameter("idPizza");
 
 		if (!NumberUtils.isCreatable(idPizza)) {
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione, ID non valido/non presente!");
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}
@@ -37,7 +37,7 @@ public class ExecuteUpdatePizzaServlet extends HttpServlet {
 
 		if (!UtilityForm.validatePizzaBean(pizzaInstance)) {
 			request.setAttribute("update_pizza_attr", pizzaInstance);
-			request.setAttribute("errorMessage", "Attenzione, errore nella creazione del cliente. Riprovare.");
+			request.setAttribute("errorMessage", "Attenzione, errore nella creazione della pizza. Riprovare.");
 			request.getRequestDispatcher("/pizza/edit.jsp").forward(request, response);
 			return;
 		}
@@ -48,7 +48,8 @@ public class ExecuteUpdatePizzaServlet extends HttpServlet {
 			request.setAttribute("successMessage", "Operazione effettuata con successo");
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errorino.");
+			request.setAttribute("errorMessage",
+					"Attenzione: errore nell'aggiornamento della pizza. Si prega di riprovare");
 			request.getRequestDispatcher("home.jsp").forward(request, response);
 			return;
 		}

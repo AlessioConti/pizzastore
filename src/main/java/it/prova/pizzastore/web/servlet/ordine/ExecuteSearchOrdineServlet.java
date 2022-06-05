@@ -11,9 +11,6 @@ import it.prova.pizzastore.model.Ordine;
 import it.prova.pizzastore.service.MyServiceFactory;
 import it.prova.pizzastore.utility.UtilityForm;
 
-/**
- * Servlet implementation class ExecuteSearchOrdineServlet
- */
 @WebServlet("/ExecuteSearchOrdineServlet")
 public class ExecuteSearchOrdineServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,7 +36,7 @@ public class ExecuteSearchOrdineServlet extends HttpServlet {
 					MyServiceFactory.getOrdineServiceInstance().findByExample(example));
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione: errore nella ricerca dell'ordine");
 			request.getRequestDispatcher("/ordine/insert.jsp").forward(request, response);
 			return;
 		}

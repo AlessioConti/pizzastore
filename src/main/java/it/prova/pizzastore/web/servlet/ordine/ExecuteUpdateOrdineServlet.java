@@ -30,7 +30,7 @@ public class ExecuteUpdateOrdineServlet extends HttpServlet {
 		String idOrdineParam = request.getParameter("idOrdine");
 		Ordine ordineInstance = new Ordine();
 		if (!NumberUtils.isCreatable(idOrdineParam)) {
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione, ID dell'ordine non valido/non presente!");
 			request.getRequestDispatcher("/ordine/index.jsp").forward(request, response);
 			return;
 		}
@@ -57,7 +57,7 @@ public class ExecuteUpdateOrdineServlet extends HttpServlet {
 			MyServiceFactory.getOrdineServiceInstance().aggiorna(ordineInstance);
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione: errore nell'aggiornamento dell'ordine");
 			request.getRequestDispatcher("/ordine/edit.jsp").forward(request, response);
 			return;
 		}

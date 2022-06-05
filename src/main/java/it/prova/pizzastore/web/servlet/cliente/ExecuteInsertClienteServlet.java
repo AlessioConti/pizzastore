@@ -29,7 +29,7 @@ public class ExecuteInsertClienteServlet extends HttpServlet {
 				request.setAttribute("insert_cliente_attr", indirizzoParam);
 
 				request.setAttribute("clienti_list_attribute", MyServiceFactory.getClienteServiceInstance().listAll());
-				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
+				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione. Si prega di ritentare.");
 				request.getRequestDispatcher("/cliente/insert.jsp").forward(request, response);
 				return;
 			}
@@ -37,7 +37,7 @@ public class ExecuteInsertClienteServlet extends HttpServlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione, inserimento del cliente fallito. Ritentare.");
 			request.getRequestDispatcher("/cliente/insert.jsp").forward(request, response);
 			return;
 		}

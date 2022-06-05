@@ -34,7 +34,7 @@ public class ExecuteInsertPizzaServlet extends HttpServlet {
 			MyServiceFactory.getPizzaServiceInstance().inserisci(pizzaInstance);
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione: errore anomalo nell'inserimento della pizza");
 			request.getRequestDispatcher("/pizza/insert.jsp").forward(request, response);
 			return;
 		}

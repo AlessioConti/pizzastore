@@ -24,7 +24,7 @@ public class ExecuteListFattorinoServlet extends HttpServlet {
 
 		String idUserParam = request.getParameter("idUser");
 		if (!NumberUtils.isCreatable(idUserParam)) {
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione, ID non valido/non presente!");
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			return;
 		}
@@ -39,7 +39,7 @@ public class ExecuteListFattorinoServlet extends HttpServlet {
 					MyServiceFactory.getOrdineServiceInstance().trovaOrdiniAperti(Long.parseLong(idUserParam)));
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione: errore nel caricamento della lista.");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			return;
 		}

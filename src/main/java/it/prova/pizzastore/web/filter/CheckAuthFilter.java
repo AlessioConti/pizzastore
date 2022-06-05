@@ -49,7 +49,8 @@ public class CheckAuthFilter implements Filter {
 			}
 			// controllo che utente abbia ruolo admin se nel path risulta presente /admin/
 			if (isPathForOnlyAdministrators(pathAttuale) && !utenteInSession.isAdmin()) {
-				httpRequest.setAttribute("messaggio", "Non si è autorizzati alla navigazione richiesta");
+				httpRequest.setAttribute("messaggio",
+						"Non si è autorizzati alla navigazione richiesta. Effettua il login corretto e ritenta.");
 				httpRequest.getRequestDispatcher("/home.jsp").forward(httpRequest, httpResponse);
 				return;
 			}

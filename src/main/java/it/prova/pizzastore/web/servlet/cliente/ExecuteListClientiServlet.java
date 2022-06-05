@@ -32,7 +32,7 @@ public class ExecuteListClientiServlet extends HttpServlet {
 					MyServiceFactory.getClienteServiceInstance().cercaClientiAttivi());
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione: errore nel caricamento della lista.");
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}

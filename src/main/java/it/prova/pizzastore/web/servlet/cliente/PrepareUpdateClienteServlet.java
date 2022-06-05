@@ -21,7 +21,7 @@ public class PrepareUpdateClienteServlet extends HttpServlet {
 		String idClienteParam = request.getParameter("idCliente");
 
 		if (!NumberUtils.isCreatable(idClienteParam)) {
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione, ID non valido/non presente!");
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}

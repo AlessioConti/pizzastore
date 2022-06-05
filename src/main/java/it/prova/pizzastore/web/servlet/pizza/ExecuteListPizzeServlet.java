@@ -31,7 +31,7 @@ public class ExecuteListPizzeServlet extends HttpServlet {
 			request.setAttribute("pizze_list_attribute", MyServiceFactory.getPizzaServiceInstance().listAll());
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione: errore nel caricamento della lista");
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}

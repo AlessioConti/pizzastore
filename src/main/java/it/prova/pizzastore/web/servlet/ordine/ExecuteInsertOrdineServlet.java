@@ -47,7 +47,7 @@ public class ExecuteInsertOrdineServlet extends HttpServlet {
 			MyServiceFactory.getOrdineServiceInstance().inserisci(ordineInstance);
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione: errore nell'inserimento dell'ordine");
 			request.getRequestDispatcher("/ordine/insert.jsp").forward(request, response);
 			return;
 		}

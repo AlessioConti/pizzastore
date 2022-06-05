@@ -28,7 +28,7 @@ public class ExecuteSearchPizzaServlet extends HttpServlet {
 					MyServiceFactory.getPizzaServiceInstance().findByExample(example));
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione: errore nella ricerca della pizza. Si prega di riprovare");
 			request.getRequestDispatcher("/pizza/search.jsp").forward(request, response);
 			return;
 		}

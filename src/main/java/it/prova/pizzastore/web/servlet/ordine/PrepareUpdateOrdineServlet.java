@@ -20,7 +20,7 @@ public class PrepareUpdateOrdineServlet extends HttpServlet {
 
 		String idOrdineParam = request.getParameter("idOrdine");
 		if (!NumberUtils.isCreatable(idOrdineParam)) {
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione, ID non valido/non presente!");
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			return;
 		}
@@ -33,6 +33,9 @@ public class PrepareUpdateOrdineServlet extends HttpServlet {
 			request.setAttribute("clienti_list_attribute", MyServiceFactory.getClienteServiceInstance().listAll());
 		} catch (Exception e) {
 			e.printStackTrace();
+			request.setAttribute("errorMessage", "Attenzione si è verificato un errore nel passaggio di attributi.");
+			request.getRequestDispatcher("home").forward(request, response);
+			return;
 		}
 
 		request.getRequestDispatcher("/ordine/edit.jsp").forward(request, response);

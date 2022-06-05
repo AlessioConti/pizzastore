@@ -12,9 +12,6 @@ import org.apache.commons.lang3.math.NumberUtils;
 import it.prova.pizzastore.model.Ordine;
 import it.prova.pizzastore.service.MyServiceFactory;
 
-/**
- * Servlet implementation class PrepareDeleteOrdineServlet
- */
 @WebServlet("/PrepareDeleteOrdineServlet")
 public class PrepareDeleteOrdineServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,7 +22,7 @@ public class PrepareDeleteOrdineServlet extends HttpServlet {
 		String idOrdineParam = request.getParameter("idOrdine");
 
 		if (!NumberUtils.isCreatable(idOrdineParam)) {
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione, ID non valido/non presente!");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			return;
 		}
@@ -44,7 +41,7 @@ public class PrepareDeleteOrdineServlet extends HttpServlet {
 			request.setAttribute("delete_ordine_attr", ordineInstance);
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione: errore anomalo nella cancellazione dell'ordine");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			return;
 		}

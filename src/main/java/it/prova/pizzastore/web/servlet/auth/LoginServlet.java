@@ -60,12 +60,14 @@ public class LoginServlet extends HttpServlet {
 			} else {
 
 				destinazione = "login.jsp";
-				request.setAttribute("errorMessage", "Attenzione! Si è verificato un errore di login.");
+				request.setAttribute("errorMessage",
+						"Attenzione! Il login effettuato non è inerente a nessun servizio disponibile!");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			destinazione = "login.jsp";
-			request.setAttribute("errorMessage", "Attenzione! Si è verificato un errore.");
+			request.setAttribute("errorMessage",
+					"Attenzione! Si è verificato un errore nel login. Si prega di ritentare.");
 		}
 
 		request.getRequestDispatcher(destinazione).forward(request, response);

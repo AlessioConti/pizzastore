@@ -28,7 +28,7 @@ public class ExecuteSearchClienteServlet extends HttpServlet {
 					MyServiceFactory.getClienteServiceInstance().findByExample(example));
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione: errore nella ricerca del cliente.");
 			request.getRequestDispatcher("/cliente/search.jsp").forward(request, response);
 			return;
 		}

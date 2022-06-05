@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import it.prova.pizzastore.model.Ordine;
 import it.prova.pizzastore.service.MyServiceFactory;
 
-/**
- * Servlet implementation class PrepareInsertOrdineServlet
- */
 @WebServlet("/PrepareInsertOrdineServlet")
 public class PrepareInsertOrdineServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,7 +26,7 @@ public class PrepareInsertOrdineServlet extends HttpServlet {
 			request.setAttribute("lista_clienti", MyServiceFactory.getClienteServiceInstance().listAll());
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione: errore anomalo nel passaggio di pagine web");
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}

@@ -20,7 +20,7 @@ public class ExecuteDeleteFattorinoServlet extends HttpServlet {
 
 		String idOrdineParam = request.getParameter("idOrdine");
 		if (!NumberUtils.isCreatable(idOrdineParam)) {
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore con l'ordine.");
+			request.setAttribute("errorMessage", "Attenzione, ID dell'ordine non valido/non presente!");
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			return;
 		}
@@ -28,7 +28,7 @@ public class ExecuteDeleteFattorinoServlet extends HttpServlet {
 		String idUtenteParam = request.getParameter("idUtente");
 
 		if (!NumberUtils.isCreatable(idUtenteParam)) {
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore con l'utente.");
+			request.setAttribute("errorMessage", "Attenzione, ID del fattorino non valido/non presente!");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			return;
 		}
@@ -41,7 +41,7 @@ public class ExecuteDeleteFattorinoServlet extends HttpServlet {
 			request.setAttribute("successMessage", "Operazione effettuata con successo");
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione: errore nel caricamento degli ordini.");
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			return;
 		}

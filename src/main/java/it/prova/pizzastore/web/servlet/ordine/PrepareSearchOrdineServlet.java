@@ -24,7 +24,7 @@ public class PrepareSearchOrdineServlet extends HttpServlet {
 			request.setAttribute("clienti_list_attribute", MyServiceFactory.getClienteServiceInstance().listAll());
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione: errore nel passaggio di parametri");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 		request.getRequestDispatcher("/ordine/search.jsp").forward(request, response);

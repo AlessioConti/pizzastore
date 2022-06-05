@@ -31,7 +31,7 @@ public class ExecuteListOrdiniServlet extends HttpServlet {
 			request.setAttribute("ordini_list_attribute", MyServiceFactory.getOrdineServiceInstance().listAll());
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione: errore anomalo nel caricamento della lista");
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}

@@ -22,7 +22,7 @@ public class ExecuteUpdateClienteServlet extends HttpServlet {
 		String idClienteParam = request.getParameter("idCliente");
 
 		if (!NumberUtils.isCreatable(idClienteParam)) {
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione, ID non valido/non presente!");
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}
@@ -49,7 +49,8 @@ public class ExecuteUpdateClienteServlet extends HttpServlet {
 			request.setAttribute("successMessage", "Operazione effettuata con successo");
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errorino.");
+			request.setAttribute("errorMessage",
+					"Attenzione si è verificato un errore con la ricerca di clienti attivi.");
 			request.getRequestDispatcher("home.jsp").forward(request, response);
 			return;
 		}

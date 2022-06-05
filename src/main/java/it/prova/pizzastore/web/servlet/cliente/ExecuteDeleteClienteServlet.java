@@ -22,7 +22,7 @@ public class ExecuteDeleteClienteServlet extends HttpServlet {
 
 		if (!NumberUtils.isCreatable(idClienteParam)) {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione, ID non valido/non presente!");
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}

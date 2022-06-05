@@ -20,7 +20,7 @@ public class ExecuteDeleteOrdineServlet extends HttpServlet {
 
 		String idOrdineParam = request.getParameter("idOrdine");
 		if (!NumberUtils.isCreatable(idOrdineParam)) {
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione, ID non valido/non presente!");
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			return;
 		}
@@ -32,7 +32,7 @@ public class ExecuteDeleteOrdineServlet extends HttpServlet {
 			request.setAttribute("successMessage", "Operazione effettuata con successo");
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione: errore nella rimozione dell'ordine");
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			return;
 		}
