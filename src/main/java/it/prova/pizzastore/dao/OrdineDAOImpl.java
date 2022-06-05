@@ -86,5 +86,14 @@ public class OrdineDAOImpl implements OrdineDAO {
 
 		return typedQuery.getResultList();
 	}
+	
+	public List<Ordine> listOrdiniAperti(Long id) throws Exception{
+		return entityManager.createQuery("select o from Ordine o left join o.utente u where o.closed = 0 and u.id = :idUtente", Ordine.class).setParameter("idUtente", id).getResultList();
+	}
+	
+	public Ordine chiudi(Ordine input) throws Exception{
+		input.setClosed(true);
+		return input;
+	}
 
 }

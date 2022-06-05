@@ -60,7 +60,7 @@ public class LoginServlet extends HttpServlet {
 			} else {
 				
 				destinazione = "login.jsp";
-				request.setAttribute("errorMessage", "Attenzione! Si è verificato un errore.");
+				request.setAttribute("errorMessage", "Attenzione! Si è verificato un errore di login.");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

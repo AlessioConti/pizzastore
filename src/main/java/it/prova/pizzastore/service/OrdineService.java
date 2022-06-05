@@ -21,4 +21,8 @@ public interface OrdineService {
 	public Ordine caricaElementoEager(Long id) throws Exception;
 	
 	public List<Ordine> findByExample(Ordine input) throws Exception;
+	
+	public List<Ordine> trovaOrdiniAperti(Long id) throws Exception;
+	
+	public void chiudiOrdine(Long id) throws Exception;
 }

@@ -145,5 +145,45 @@ public class OrdineServiceImpl implements OrdineService {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 		}
 	}
+	
+	public List<Ordine> trovaOrdiniAperti(Long id) throws Exception{
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			ordineDAO.setEntityManager(entityManager);
+			
+			return ordineDAO.listOrdiniAperti(id);
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+	
+	public void chiudiOrdine(Long id) throws Exception{
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			entityManager.getTransaction().begin();
+			
+			ordineDAO.setEntityManager(entityManager);
+			
+			Ordine temp = ordineDAO.findOne(id).orElse(null);
+			
+			if(temp == null)
+				throw new ElementNotFoundException("Elemento non trovato");
+			
+			ordineDAO.chiudi(temp);
+			
+			entityManager.getTransaction().commit();
+		}catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
 
 }

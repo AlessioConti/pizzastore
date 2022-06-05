@@ -7,7 +7,7 @@
 		<!-- Custom styles per le features di bootstrap 'Columns with icons' -->
 	   <link href="./assets/css/features.css" rel="stylesheet">
 	   
-	   <title>Home Page Pizzeria</title>
+	   <title>Login Fattorino</title>
 	 </head>
 	   <body class="d-flex flex-column h-100">
 	   		
@@ -51,8 +51,8 @@
 			     <div class="p-5 mb-4 bg-light rounded-3">
 				      <div class="container-fluid py-5">
 				        <h1 class="display-5 fw-bold">Benvenuto nella Solving Pizzeria</h1>
-				        <p class="col-md-8 fs-4">FATTORINO PROVA. </p>
-				        <a class="btn btn-primary btn-lg" href="PrepareSearchRegistaServlet">Vai a Ricerca Registi</a>
+				        <p class="col-md-8 fs-4">Sei entrato come: Fattorino. </p>
+				        <a class="btn btn-primary btn-lg" href="ExecuteListFattorinoServlet?idUser=${userInfo.id }">Vai verso i tuoi ordini</a>
 				      </div>
 			    </div>
 			    
