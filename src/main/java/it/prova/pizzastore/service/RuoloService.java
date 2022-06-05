@@ -5,8 +5,6 @@ import java.util.List;
 import it.prova.pizzastore.dao.RuoloDAO;
 import it.prova.pizzastore.model.Ruolo;
 
-
-
 public interface RuoloService {
 	public List<Ruolo> listAll() throws Exception;
 

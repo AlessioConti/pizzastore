@@ -7,7 +7,7 @@
 	 	<!-- Common imports in pages -->
 	 	<jsp:include page="../header.jsp" />
 	 	
-	   <title>Visualizza Elemento</title>
+	   <title>Visualizza Pizza</title>
 	   
 	 </head>
 	   <body class="d-flex flex-column h-100">
@@ -54,7 +54,7 @@
 					    
 					    <div class='card-footer'>
 					        <a href="ExecuteListPizzeServlet" class='btn btn-outline-secondary' style='width:80px'>
-					            <i class='fa fa-chevron-left'></i> Back
+					            <i class='fa fa-chevron-left'></i> Torna Indietro
 					        </a>
 					    </div>
 					<!-- end card -->

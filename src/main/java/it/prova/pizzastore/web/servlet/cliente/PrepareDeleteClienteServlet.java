@@ -16,7 +16,8 @@ import it.prova.pizzastore.service.MyServiceFactory;
 public class PrepareDeleteClienteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String idClienteParam = request.getParameter("idCliente");
 
 		if (!NumberUtils.isCreatable(idClienteParam)) {

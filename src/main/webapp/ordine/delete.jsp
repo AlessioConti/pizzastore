@@ -98,9 +98,9 @@
 					    <div class='card-footer'>
 					    	<form action="ExecuteDeleteOrdineServlet" method="post">
 					    		<input type="hidden" name="idOrdine" value="${delete_ordine_attr.id}">
-						    	<button type="submit" name="submit" id="submit" class="btn btn-danger">Conferma</button>
+						    	<button type="submit" name="submit" id="submit" class="btn btn-danger">Elimina</button>
 						        <a href="ExecuteListOrdiniServlet" class='btn btn-outline-secondary' style='width:80px'>
-						            <i class='fa fa-chevron-left'></i> Back
+						            <i class='fa fa-chevron-left'></i> Torna Indietro
 						        </a>
 					        </form>
 					    </div>

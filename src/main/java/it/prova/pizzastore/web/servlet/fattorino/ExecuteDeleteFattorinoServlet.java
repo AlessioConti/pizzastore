@@ -24,9 +24,9 @@ public class ExecuteDeleteFattorinoServlet extends HttpServlet {
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			return;
 		}
-		
+
 		String idUtenteParam = request.getParameter("idUtente");
-		
+
 		if (!NumberUtils.isCreatable(idUtenteParam)) {
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore con l'utente.");
 			request.getRequestDispatcher("index.jsp").forward(request, response);

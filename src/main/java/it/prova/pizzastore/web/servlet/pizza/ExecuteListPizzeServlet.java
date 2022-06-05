@@ -15,7 +15,8 @@ import it.prova.pizzastore.service.MyServiceFactory;
 public class ExecuteListPizzeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
 			// se nell'url della request è presente SUCCESS significa che devo mandare un
 			// messaggio di avvenuta operazione in pagina

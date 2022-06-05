@@ -16,7 +16,8 @@ import it.prova.pizzastore.service.MyServiceFactory;
 public class PrepareUpdatePizzaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String idPizza = request.getParameter("idPizza");
 
 		if (!NumberUtils.isCreatable(idPizza)) {
@@ -42,9 +43,8 @@ public class PrepareUpdatePizzaServlet extends HttpServlet {
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}
-		
+
 		request.getRequestDispatcher("/pizza/edit.jsp").forward(request, response);
 	}
-
 
 }

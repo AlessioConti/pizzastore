@@ -14,7 +14,7 @@ import it.prova.pizzastore.service.MyServiceFactory;
 @WebServlet("/ExecuteDeleteOrdineServlet")
 public class ExecuteDeleteOrdineServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -24,13 +24,11 @@ public class ExecuteDeleteOrdineServlet extends HttpServlet {
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			return;
 		}
-		
 
 		try {
 
 			MyServiceFactory.getOrdineServiceInstance().rimuovi(Long.parseLong(idOrdineParam));
-			request.setAttribute("ordini_list_attribute",
-					MyServiceFactory.getOrdineServiceInstance().listAll());
+			request.setAttribute("ordini_list_attribute", MyServiceFactory.getOrdineServiceInstance().listAll());
 			request.setAttribute("successMessage", "Operazione effettuata con successo");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,6 +39,5 @@ public class ExecuteDeleteOrdineServlet extends HttpServlet {
 
 		request.getRequestDispatcher("/ordine/list.jsp").forward(request, response);
 	}
-
 
 }

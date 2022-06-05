@@ -25,19 +25,18 @@ public class ExecuteInsertOrdineServlet extends HttpServlet {
 		String clienteIdParam = request.getParameter("cliente.id");
 		String[] pizzeIdParam = request.getParameterValues("pizza.id");
 
-		 Ordine ordineInstance = new Ordine();
+		Ordine ordineInstance = new Ordine();
 
 		try {
-			ordineInstance = UtilityForm.createOrdineFromParams(codiceParam, dataParam, clienteIdParam, pizzeIdParam, utenteIdParam);
+			ordineInstance = UtilityForm.createOrdineFromParams(codiceParam, dataParam, clienteIdParam, pizzeIdParam,
+					utenteIdParam);
 			if (!UtilityForm.validateOrdineBean(ordineInstance)) {
-				
+
 				request.setAttribute("insert_ordine_attr", ordineInstance);
 				request.setAttribute("lista_fattorini", MyServiceFactory.getUtenteServiceInstance().listAll());
 
-				request.setAttribute("lista_pizze",
-						MyServiceFactory.getPizzaServiceInstance().listAll());
-				request.setAttribute("lista_clienti",
-						MyServiceFactory.getClienteServiceInstance().listAll());
+				request.setAttribute("lista_pizze", MyServiceFactory.getPizzaServiceInstance().listAll());
+				request.setAttribute("lista_clienti", MyServiceFactory.getClienteServiceInstance().listAll());
 
 				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
 				request.getRequestDispatcher("/ordine/insert.jsp").forward(request, response);

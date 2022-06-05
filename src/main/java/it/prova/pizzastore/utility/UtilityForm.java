@@ -92,7 +92,7 @@ public class UtilityForm {
 		}
 		return true;
 	}
-	
+
 	private static boolean controllaPizze(Set<Pizza> listaPizze) {
 		if (listaPizze == null || listaPizze.isEmpty()) {
 			return true;

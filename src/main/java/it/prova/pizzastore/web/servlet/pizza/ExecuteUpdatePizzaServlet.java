@@ -17,41 +17,42 @@ import it.prova.pizzastore.utility.UtilityForm;
 public class ExecuteUpdatePizzaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String idPizza = request.getParameter("idPizza");
-		
+
 		if (!NumberUtils.isCreatable(idPizza)) {
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}
-		
+
 		String descrizioneParam = request.getParameter("descrizione");
 		String ingredientiParam = request.getParameter("ingredienti");
 		String prezzoParam = request.getParameter("prezzoBase");
-		
+
 		Pizza pizzaInstance = UtilityForm.createPizzaFromParas(descrizioneParam, ingredientiParam, prezzoParam);
 		pizzaInstance.setId(Long.parseLong(idPizza));
 		pizzaInstance.setAttivo(true);
-		
-		if(!UtilityForm.validatePizzaBean(pizzaInstance)) {
+
+		if (!UtilityForm.validatePizzaBean(pizzaInstance)) {
 			request.setAttribute("update_pizza_attr", pizzaInstance);
 			request.setAttribute("errorMessage", "Attenzione, errore nella creazione del cliente. Riprovare.");
 			request.getRequestDispatcher("/pizza/edit.jsp").forward(request, response);
 			return;
 		}
-		
+
 		try {
 			MyServiceFactory.getPizzaServiceInstance().aggiorna(pizzaInstance);
 			request.setAttribute("pizze_list_attribute", MyServiceFactory.getPizzaServiceInstance().listAll());
 			request.setAttribute("successMessage", "Operazione effettuata con successo");
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errorino.");
 			request.getRequestDispatcher("home.jsp").forward(request, response);
 			return;
 		}
-		
+
 		request.getRequestDispatcher("/pizza/list.jsp").forward(request, response);
 	}
 

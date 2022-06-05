@@ -19,8 +19,9 @@ import it.prova.pizzastore.service.MyServiceFactory;
 @WebServlet("/PrepareDeleteFattorinoServlet")
 public class PrepareDeleteFattorinoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String idOrdineParam = request.getParameter("idOrdine");
 
@@ -29,9 +30,9 @@ public class PrepareDeleteFattorinoServlet extends HttpServlet {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			return;
 		}
-		
+
 		String idUtenteParam = request.getParameter("idUtente");
-		
+
 		if (!NumberUtils.isCreatable(idUtenteParam)) {
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -48,15 +49,16 @@ public class PrepareDeleteFattorinoServlet extends HttpServlet {
 						response);
 				return;
 			}
-			Utente utenteInstance = MyServiceFactory.getUtenteServiceInstance().caricaSingoloElemento(Long.parseLong(idUtenteParam));
-			
+			Utente utenteInstance = MyServiceFactory.getUtenteServiceInstance()
+					.caricaSingoloElemento(Long.parseLong(idUtenteParam));
+
 			if (utenteInstance == null) {
 				request.setAttribute("errorMessage", "Utente non valido.");
 				request.getRequestDispatcher("ExecuteListOrdineServlet?operationResult=NOT_FOUND").forward(request,
 						response);
 				return;
 			}
-			
+
 			request.setAttribute("delete_ordine_attr", ordineInstance);
 			request.setAttribute("utente", utenteInstance);
 		} catch (Exception e) {

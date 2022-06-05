@@ -87,7 +87,7 @@
 								<input type="hidden" name="idOrdine" value="${update_ordine_attr.id}">
 								
 								<div class="col-12">
-									<button type="submit" name="insertSubmit" value="insertSubmit" id="insertSubmit" class="btn btn-primary">Conferma</button>
+									<button type="submit" name="insertSubmit" value="insertSubmit" id="insertSubmit" class="btn btn-primary">Modifica</button>
 								</div>
 		
 								</form>

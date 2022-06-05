@@ -7,7 +7,7 @@
 	 	<!-- Common imports in pages -->
 	 	<jsp:include page="../header.jsp" />
 	 	
-	   <title>Rimuovi Elemento</title>
+	   <title>Rimuovi Pizza</title>
 	   
 	 </head>
 	   <body class="d-flex flex-column h-100">
@@ -22,7 +22,7 @@
 			  
 			  		<div class='card'>
 					    <div class='card-header'>
-					        <h5>Visualizza dettaglio</h5>
+					        <h5>Visualizza dettaglio Pizza</h5>
 					    </div>
 					    
 					
@@ -56,9 +56,9 @@
 					    <div class='card-footer'>
 					    	<form action="ExecuteDeletePizzaServlet" method="post">
 					    		<input type="hidden" name="idPizza" value="${delete_pizza_attr.id}">
-						    	<button type="submit" name="submit" id="submit" class="btn btn-danger">Conferma</button>
+						    	<button type="submit" name="submit" id="submit" class="btn btn-danger">Elimina</button>
 						        <a href="ExecuteListPizzeServlet" class='btn btn-outline-secondary' style='width:80px'>
-						            <i class='fa fa-chevron-left'></i> Back
+						            <i class='fa fa-chevron-left'></i> Torna Indietro
 						        </a>
 					        </form>
 					    </div>

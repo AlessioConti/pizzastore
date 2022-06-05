@@ -10,8 +10,9 @@ import it.prova.pizzastore.model.Ordine;
 import it.prova.pizzastore.web.listener.LocalEntityManagerFactoryListener;
 
 public class OrdineServiceImpl implements OrdineService {
-	
+
 	private OrdineDAO ordineDAO;
+
 	@Override
 	public void setOrdineDAO(OrdineDAO ordineDAO) {
 		this.ordineDAO = ordineDAO;
@@ -20,12 +21,12 @@ public class OrdineServiceImpl implements OrdineService {
 	@Override
 	public List<Ordine> listAll() throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
-		
+
 		try {
 			ordineDAO.setEntityManager(entityManager);
-			
+
 			return ordineDAO.list();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
@@ -36,12 +37,12 @@ public class OrdineServiceImpl implements OrdineService {
 	@Override
 	public Ordine caricaSingoloElemento(Long id) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
-		
+
 		try {
 			ordineDAO.setEntityManager(entityManager);
-			
+
 			return ordineDAO.findOne(id).orElse(null);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
@@ -52,16 +53,16 @@ public class OrdineServiceImpl implements OrdineService {
 	@Override
 	public void aggiorna(Ordine ordineInstance) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
-		
+
 		try {
 			entityManager.getTransaction().begin();
-			
+
 			ordineDAO.setEntityManager(entityManager);
-			
+
 			ordineDAO.update(ordineInstance);
-			
+
 			entityManager.getTransaction().commit();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			e.printStackTrace();
 			throw e;
@@ -93,21 +94,21 @@ public class OrdineServiceImpl implements OrdineService {
 	@Override
 	public void rimuovi(Long idOrdine) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
-		
+
 		try {
 			entityManager.getTransaction().begin();
-			
+
 			ordineDAO.setEntityManager(entityManager);
-			
+
 			Ordine ordineDelete = ordineDAO.findOne(idOrdine).orElse(null);
-			
-			if(ordineDelete == null)
-				throw new ElementNotFoundException("Ordine con id "+idOrdine+" non trovato");
-			
+
+			if (ordineDelete == null)
+				throw new ElementNotFoundException("Ordine con id " + idOrdine + " non trovato");
+
 			ordineDAO.delete(ordineDelete);
-			
+
 			entityManager.getTransaction().commit();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			e.printStackTrace();
 			throw e;
@@ -115,8 +116,8 @@ public class OrdineServiceImpl implements OrdineService {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 		}
 	}
-	
-	public Ordine caricaElementoEager(Long id) throws Exception{
+
+	public Ordine caricaElementoEager(Long id) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
@@ -130,54 +131,54 @@ public class OrdineServiceImpl implements OrdineService {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 		}
 	}
-	
-	public List<Ordine> findByExample(Ordine input) throws Exception{
+
+	public List<Ordine> findByExample(Ordine input) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
 			ordineDAO.setEntityManager(entityManager);
-			
+
 			return ordineDAO.findByExample(input);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 		}
 	}
-	
-	public List<Ordine> trovaOrdiniAperti(Long id) throws Exception{
+
+	public List<Ordine> trovaOrdiniAperti(Long id) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
 			ordineDAO.setEntityManager(entityManager);
-			
+
 			return ordineDAO.listOrdiniAperti(id);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 		}
 	}
-	
-	public void chiudiOrdine(Long id) throws Exception{
+
+	public void chiudiOrdine(Long id) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
 			entityManager.getTransaction().begin();
-			
+
 			ordineDAO.setEntityManager(entityManager);
-			
+
 			Ordine temp = ordineDAO.findOne(id).orElse(null);
-			
-			if(temp == null)
+
+			if (temp == null)
 				throw new ElementNotFoundException("Elemento non trovato");
-			
+
 			ordineDAO.chiudi(temp);
-			
+
 			entityManager.getTransaction().commit();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			e.printStackTrace();
 			throw e;

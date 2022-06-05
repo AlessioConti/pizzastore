@@ -16,19 +16,21 @@ import it.prova.pizzastore.service.MyServiceFactory;
 public class ExecuteShowPizzaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String idPizza = request.getParameter("idPizza");
-		
-		if(!NumberUtils.isCreatable(idPizza)) {
+
+		if (!NumberUtils.isCreatable(idPizza)) {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}
-		
+
 		try {
-			Pizza pizzaInstance = MyServiceFactory.getPizzaServiceInstance().caricaSingoloElemento(Long.parseLong(idPizza));
-			
+			Pizza pizzaInstance = MyServiceFactory.getPizzaServiceInstance()
+					.caricaSingoloElemento(Long.parseLong(idPizza));
+
 			if (pizzaInstance == null) {
 				request.setAttribute("errorMessage", "Elemento non trovato.");
 				request.getRequestDispatcher("ExecuteListClientiServlet?operationResult=NOT_FOUND").forward(request,
@@ -43,7 +45,7 @@ public class ExecuteShowPizzaServlet extends HttpServlet {
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}
-		
+
 		request.getRequestDispatcher("/pizza/show.jsp").forward(request, response);
 	}
 

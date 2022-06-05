@@ -1,4 +1,5 @@
 package it.prova.pizzastore.web.listener;
+
 import java.util.Date;
 
 import javax.persistence.EntityManager;
@@ -18,7 +19,7 @@ import it.prova.pizzastore.service.UtenteService;
 
 @WebListener
 public class LocalEntityManagerFactoryListener implements ServletContextListener {
-	
+
 	private static EntityManagerFactory entityManagerFactory;
 
 	public void contextDestroyed(ServletContextEvent sce) {
@@ -26,7 +27,7 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 			entityManagerFactory.close();
 		}
 	}
-	
+
 	public void contextInitialized(ServletContextEvent sce) {
 		try {
 			entityManagerFactory = Persistence.createEntityManagerFactory("pizzastore_unit");
@@ -38,7 +39,7 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 			throw new ExceptionInInitializerError(ex);
 		}
 	}
-	
+
 	public static EntityManager getEntityManager() {
 		if (entityManagerFactory == null) {
 			throw new IllegalStateException("Context is not initialized yet.");
@@ -60,11 +61,11 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 			}
 		}
 	}
-	
-	private void initAdminUserAndRuoli() throws Exception{
+
+	private void initAdminUserAndRuoli() throws Exception {
 		RuoloService ruoloServiceInstance = MyServiceFactory.getRuoloServiceInstance();
 		UtenteService utenteServiceInstance = MyServiceFactory.getUtenteServiceInstance();
-		
+
 		if (ruoloServiceInstance.cercaPerDescrizioneECodice("Administrator", "ADMIN_ROLE") == null) {
 			ruoloServiceInstance.inserisciNuovo(new Ruolo("Administrator", "ADMIN_ROLE"));
 		}
@@ -72,7 +73,7 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 		if (ruoloServiceInstance.cercaPerDescrizioneECodice("Pizzaiolo", "PIZZAIOLO_ROLE") == null) {
 			ruoloServiceInstance.inserisciNuovo(new Ruolo("Pizzaiolo", "PIZZAIOLO_ROLE"));
 		}
-		
+
 		if (ruoloServiceInstance.cercaPerDescrizioneECodice("Fattorino", "FATTORINO_ROLE") == null) {
 			ruoloServiceInstance.inserisciNuovo(new Ruolo("Fattorino", "FATTORINO_ROLE"));
 		}
@@ -84,7 +85,7 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 			utenteServiceInstance.aggiungiRuolo(admin,
 					ruoloServiceInstance.cercaPerDescrizioneECodice("Administrator", "ADMIN_ROLE"));
 		}
-		
+
 		if (utenteServiceInstance.findByUsernameAndPassword("pizza", "pizza") == null) {
 			Utente pizza = new Utente("pizza", "pizza", "Alessio", "Bianchi", new Date());
 			pizza.setStato(StatoUtente.ATTIVO);
@@ -92,7 +93,7 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 			utenteServiceInstance.aggiungiRuolo(pizza,
 					ruoloServiceInstance.cercaPerDescrizioneECodice("Pizzaiolo", "PIZZAIOLO_ROLE"));
 		}
-		
+
 		if (utenteServiceInstance.findByUsernameAndPassword("fattorino", "fattorino") == null) {
 			Utente fattorino = new Utente("fattorino", "fattorino", "Giulio", "Verdi", new Date());
 			fattorino.setStato(StatoUtente.ATTIVO);
@@ -101,5 +102,5 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 					ruoloServiceInstance.cercaPerDescrizioneECodice("Fattorino", "FATTORINO_ROLE"));
 		}
 	}
-	
+
 }

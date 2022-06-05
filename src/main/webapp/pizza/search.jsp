@@ -9,7 +9,7 @@
 	 	<!-- Common imports in pages -->
 	 	<jsp:include page="../header.jsp" />
 	   
-	   <title>Ricerca Elemento</title>
+	   <title>Ricerca Pizza</title>
 	 </head>
 	   <body class="d-flex flex-column h-100">
 	   
@@ -36,7 +36,7 @@
 			  
 			  <div class='card'>
 				    <div class='card-header'>
-				        <h5>Cerca Cliente</h5> 
+				        <h5>Cerca Pizza</h5> 
 				    </div>
 				    <div class='card-body'>
 		
@@ -62,7 +62,7 @@
 								
 								
 							<div class="col-12">
-								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
+								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Ricerca</button>
 							</div>
 		
 						</form>

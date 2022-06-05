@@ -24,7 +24,7 @@
 			  
 			  		<div class='card'>
 					    <div class='card-header'>
-					        <h5>Visualizza dettaglio</h5>
+					        <h5>Visualizza dettaglio Ordine</h5>
 					    </div>
 					    
 					

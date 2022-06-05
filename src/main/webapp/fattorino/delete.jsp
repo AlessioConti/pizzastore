@@ -8,7 +8,7 @@
 	 	<!-- Common imports in pages -->
 	 	<jsp:include page="../header.jsp" />
 	 	
-	   <title>Conferma Ordine</title>
+	   <title>Conferma Cancellazione Ordine</title>
 	   
 	 </head>
 	   <body class="d-flex flex-column h-100">
@@ -99,9 +99,9 @@
 					    	<form action="ExecuteDeleteFattorinoServlet" method="post">
 					    		<input type="hidden" name="idOrdine" value="${delete_ordine_attr.id}">
 					    		<input type="hidden" name="idUtente" value="${utente.id }">
-						    	<button type="submit" name="submit" id="submit" class="btn btn-danger">Conferma Ordine</button>
+						    	<button type="submit" name="submit" id="submit" class="btn btn-danger">Elimina</button>
 						        <a href="ExecuteListFattorinoServlet" class='btn btn-outline-secondary' style='width:80px'>
-						            <i class='fa fa-chevron-left'></i> Back
+						            <i class='fa fa-chevron-left'></i> Torna Indietro
 						        </a>
 					        </form>
 					    </div>

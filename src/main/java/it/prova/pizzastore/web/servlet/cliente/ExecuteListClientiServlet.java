@@ -11,11 +11,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import it.prova.pizzastore.service.MyServiceFactory;
 
-
 @WebServlet("/ExecuteListClientiServlet")
 public class ExecuteListClientiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
@@ -29,7 +28,8 @@ public class ExecuteListClientiServlet extends HttpServlet {
 			if (StringUtils.isNotBlank(operationResult) && operationResult.equalsIgnoreCase("NOT_FOUND"))
 				request.setAttribute("errorMessage", "Elemento non trovato.");
 
-			request.setAttribute("clienti_list_attribute", MyServiceFactory.getClienteServiceInstance().cercaClientiAttivi());
+			request.setAttribute("clienti_list_attribute",
+					MyServiceFactory.getClienteServiceInstance().cercaClientiAttivi());
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
@@ -40,7 +40,9 @@ public class ExecuteListClientiServlet extends HttpServlet {
 		// andiamo ai risultati
 		request.getRequestDispatcher("/cliente/list.jsp").forward(request, response);
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

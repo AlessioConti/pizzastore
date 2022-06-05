@@ -11,10 +11,8 @@ import it.prova.pizzastore.dao.RuoloDAOImpl;
 import it.prova.pizzastore.dao.UtenteDAO;
 import it.prova.pizzastore.dao.UtenteDAOImpl;
 
-
-
 public class MyServiceFactory {
-	
+
 	private static ClienteService CLIENTE_SERVICE_INSTANCE;
 	private static ClienteDAO CLIENTE_DAO_INSTANCE;
 	private static UtenteService UTENTE_SERVICE_INSTANCE;
@@ -25,7 +23,7 @@ public class MyServiceFactory {
 	private static PizzaDAO PIZZA_DAO_INSTANCE;
 	private static OrdineService ORDINE_SERVICE_INSTANCE;
 	private static OrdineDAO ORDINE_DAO_INSTANCE;
-	
+
 	public static UtenteService getUtenteServiceInstance() {
 		if (UTENTE_SERVICE_INSTANCE == null)
 			UTENTE_SERVICE_INSTANCE = new UtenteServiceImpl();
@@ -47,40 +45,40 @@ public class MyServiceFactory {
 		RUOLO_SERVICE_INSTANCE.setRuoloDAO(RUOLO_DAO_INSTANCE);
 		return RUOLO_SERVICE_INSTANCE;
 	}
-	
+
 	public static ClienteService getClienteServiceInstance() {
-		if(CLIENTE_SERVICE_INSTANCE == null)
+		if (CLIENTE_SERVICE_INSTANCE == null)
 			CLIENTE_SERVICE_INSTANCE = new ClienteServiceImpl();
-		
-		if(CLIENTE_DAO_INSTANCE == null)
+
+		if (CLIENTE_DAO_INSTANCE == null)
 			CLIENTE_DAO_INSTANCE = new ClienteDAOImpl();
-		
+
 		CLIENTE_SERVICE_INSTANCE.setClienteDAO(CLIENTE_DAO_INSTANCE);
-		
+
 		return CLIENTE_SERVICE_INSTANCE;
 	}
-	
+
 	public static PizzaService getPizzaServiceInstance() {
-		if(PIZZA_SERVICE_INSTANCE == null)
+		if (PIZZA_SERVICE_INSTANCE == null)
 			PIZZA_SERVICE_INSTANCE = new PizzaServiceImpl();
-		
-		if(PIZZA_DAO_INSTANCE == null)
+
+		if (PIZZA_DAO_INSTANCE == null)
 			PIZZA_DAO_INSTANCE = new PizzaDAOImpl();
-		
+
 		PIZZA_SERVICE_INSTANCE.setPizzaDAO(PIZZA_DAO_INSTANCE);
-		
+
 		return PIZZA_SERVICE_INSTANCE;
 	}
-	
+
 	public static OrdineService getOrdineServiceInstance() {
-		if(ORDINE_SERVICE_INSTANCE == null)
+		if (ORDINE_SERVICE_INSTANCE == null)
 			ORDINE_SERVICE_INSTANCE = new OrdineServiceImpl();
-		
-		if(ORDINE_DAO_INSTANCE == null)
+
+		if (ORDINE_DAO_INSTANCE == null)
 			ORDINE_DAO_INSTANCE = new OrdineDAOImpl();
-		
+
 		ORDINE_SERVICE_INSTANCE.setOrdineDAO(ORDINE_DAO_INSTANCE);
-		
+
 		return ORDINE_SERVICE_INSTANCE;
 	}
 }

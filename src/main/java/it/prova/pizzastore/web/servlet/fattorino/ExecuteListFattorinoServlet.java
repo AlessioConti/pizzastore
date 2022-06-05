@@ -18,10 +18,10 @@ import it.prova.pizzastore.service.MyServiceFactory;
 @WebServlet("/ExecuteListFattorinoServlet")
 public class ExecuteListFattorinoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
- 
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String idUserParam = request.getParameter("idUser");
 		if (!NumberUtils.isCreatable(idUserParam)) {
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
@@ -32,9 +32,9 @@ public class ExecuteListFattorinoServlet extends HttpServlet {
 		try {
 
 			String operationResult = request.getParameter("operationResult");
-			if(StringUtils.isNotBlank(operationResult) && operationResult.equalsIgnoreCase("SUCCESS"))
+			if (StringUtils.isNotBlank(operationResult) && operationResult.equalsIgnoreCase("SUCCESS"))
 				request.setAttribute("successMessage", "Operazione effettuata con successo");
-			
+
 			request.setAttribute("ordini_list_attribute",
 					MyServiceFactory.getOrdineServiceInstance().trovaOrdiniAperti(Long.parseLong(idUserParam)));
 		} catch (Exception e) {

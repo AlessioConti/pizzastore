@@ -16,7 +16,7 @@ import it.prova.pizzastore.utility.UtilityForm;
 @WebServlet("/ExecuteUpdateOrdineServlet")
 public class ExecuteUpdateOrdineServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -36,23 +36,22 @@ public class ExecuteUpdateOrdineServlet extends HttpServlet {
 		}
 
 		try {
-			ordineInstance = UtilityForm.createOrdineFromParams(codiceParam, dataParam, clienteIdParam,
-					pizzeIdParam, utenteIdParam);
+			ordineInstance = UtilityForm.createOrdineFromParams(codiceParam, dataParam, clienteIdParam, pizzeIdParam,
+					utenteIdParam);
 			ordineInstance.setId(Long.parseLong(idOrdineParam));
-			
+
 			if (!UtilityForm.validateOrdineBean(ordineInstance)) {
 
 				request.setAttribute("insert_ordine_attr", ordineInstance);
 				request.setAttribute("utenti_list_attribute", MyServiceFactory.getUtenteServiceInstance().listAll());
 
-				request.setAttribute("pizze_list_attribute",
-						MyServiceFactory.getPizzaServiceInstance().listAll());
-				request.setAttribute("clienti_list_attribute",
-						MyServiceFactory.getClienteServiceInstance().listAll());
+				request.setAttribute("pizze_list_attribute", MyServiceFactory.getPizzaServiceInstance().listAll());
+				request.setAttribute("clienti_list_attribute", MyServiceFactory.getClienteServiceInstance().listAll());
 
 				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
 				request.getRequestDispatcher("/ordine/edit.jsp").forward(request, response);
-				return;			}
+				return;
+			}
 
 			ordineInstance.sommaPrezziPizza();
 			MyServiceFactory.getOrdineServiceInstance().aggiorna(ordineInstance);

@@ -14,7 +14,7 @@ import it.prova.pizzastore.service.MyServiceFactory;
 @WebServlet("/PrepareUpdateOrdineServlet")
 public class PrepareUpdateOrdineServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -30,8 +30,7 @@ public class PrepareUpdateOrdineServlet extends HttpServlet {
 					MyServiceFactory.getOrdineServiceInstance().caricaSingoloElemento(Long.parseLong(idOrdineParam)));
 			request.setAttribute("utenti_list_attribute", MyServiceFactory.getUtenteServiceInstance().listAll());
 			request.setAttribute("pizze_list_attribute", MyServiceFactory.getPizzaServiceInstance().listAll());
-			request.setAttribute("clienti_list_attribute",
-					MyServiceFactory.getClienteServiceInstance().listAll());
+			request.setAttribute("clienti_list_attribute", MyServiceFactory.getClienteServiceInstance().listAll());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

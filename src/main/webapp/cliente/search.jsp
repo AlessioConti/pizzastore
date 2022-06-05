@@ -9,7 +9,7 @@
 	 	<!-- Common imports in pages -->
 	 	<jsp:include page="../header.jsp" />
 	   
-	   <title>Ricerca Elemento</title>
+	   <title>Ricerca Cliente</title>
 	 </head>
 	   <body class="d-flex flex-column h-100">
 	   

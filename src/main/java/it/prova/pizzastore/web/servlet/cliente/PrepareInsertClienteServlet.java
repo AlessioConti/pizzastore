@@ -17,13 +17,13 @@ import it.prova.pizzastore.service.MyServiceFactory;
 public class PrepareInsertClienteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
-			//metto un bean 'vuoto' in request perché per la pagina risulta necessario
+			// metto un bean 'vuoto' in request perché per la pagina risulta necessario
 			request.setAttribute("insert_cliente_attr", new Cliente());
 			// questo mi serve per la select di registi in pagina
-			request.setAttribute("clienti_list_attribute",
-					MyServiceFactory.getClienteServiceInstance().listAll());
+			request.setAttribute("clienti_list_attribute", MyServiceFactory.getClienteServiceInstance().listAll());
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
@@ -33,6 +33,5 @@ public class PrepareInsertClienteServlet extends HttpServlet {
 
 		request.getRequestDispatcher("/cliente/insert.jsp").forward(request, response);
 	}
-
 
 }

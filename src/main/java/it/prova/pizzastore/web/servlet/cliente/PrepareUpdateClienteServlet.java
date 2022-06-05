@@ -43,7 +43,7 @@ public class PrepareUpdateClienteServlet extends HttpServlet {
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}
-		
+
 		request.getRequestDispatcher("/cliente/edit.jsp").forward(request, response);
 	}
 

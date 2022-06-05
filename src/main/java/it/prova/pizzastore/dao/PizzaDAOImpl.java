@@ -15,9 +15,8 @@ import it.prova.pizzastore.model.Pizza;
 
 public class PizzaDAOImpl implements PizzaDAO {
 
-
 	private EntityManager entityManager;
-	
+
 	public List<Pizza> list() throws Exception {
 		return entityManager.createQuery("from Pizza", Pizza.class).getResultList();
 	}
@@ -30,21 +29,21 @@ public class PizzaDAOImpl implements PizzaDAO {
 
 	@Override
 	public void update(Pizza input) throws Exception {
-		if(input == null)
+		if (input == null)
 			throw new Exception("Problema valore in input");
 		input = entityManager.merge(input);
 	}
 
 	@Override
 	public void insert(Pizza input) throws Exception {
-		if(input == null)
+		if (input == null)
 			throw new Exception("Problema valore in input");
 		entityManager.persist(input);
 	}
 
 	@Override
 	public void delete(Pizza input) throws Exception {
-		if(input == null)
+		if (input == null)
 			throw new Exception("Problema valore in input");
 		entityManager.remove(entityManager.merge(input));
 	}
@@ -53,7 +52,7 @@ public class PizzaDAOImpl implements PizzaDAO {
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
-	
+
 	public List<Pizza> findByExample(Pizza example) {
 		Map<String, Object> paramaterMap = new HashMap<String, Object>();
 		List<String> whereClauses = new ArrayList<String>();
@@ -68,7 +67,7 @@ public class PizzaDAOImpl implements PizzaDAO {
 			whereClauses.add(" p.ingredienti like :ingredienti ");
 			paramaterMap.put("ingredienti", "%" + example.getIngredienti() + "%");
 		}
-		
+
 		if (example.getPrezzoBase() != null && example.getPrezzoBase() > 0) {
 			whereClauses.add(" p.prezzoBase =:prezzoBase ");
 			paramaterMap.put("prezzoBase", example.getPrezzoBase());

@@ -29,10 +29,11 @@ public class ExecuteSearchOrdineServlet extends HttpServlet {
 		String[] pizzeIdParam = request.getParameterValues("pizza.id");
 
 		Ordine example = new Ordine();
-		
+
 		try {
-			example = UtilityForm.createOrdineFromParams(codiceParam, dataParam, clienteIdParam, pizzeIdParam, utenteIdParam);
-			
+			example = UtilityForm.createOrdineFromParams(codiceParam, dataParam, clienteIdParam, pizzeIdParam,
+					utenteIdParam);
+
 			example.sommaPrezziPizza();
 			request.setAttribute("ordini_list_attribute",
 					MyServiceFactory.getOrdineServiceInstance().findByExample(example));

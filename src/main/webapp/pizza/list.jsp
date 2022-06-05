@@ -9,7 +9,7 @@
 	 	<!-- Common imports in pages -->
 	 	<jsp:include page="../header.jsp" />
 	   
-	   <title>Pagina dei Risultati</title>
+	   <title>Pagina delle Pizze</title>
 	 </head>
 	 
 	<body class="d-flex flex-column h-100">
@@ -35,7 +35,7 @@
 		  
 		  		<div class='card'>
 				    <div class='card-header'>
-				        <h5>Lista dei risultati</h5> 
+				        <h5>Lista delle pizze</h5> 
 				    </div>
 				    <div class='card-body'>
 				    	<a class="btn btn-primary " href="PrepareInsertPizzaServlet">Inserisci Nuova Pizza</a>

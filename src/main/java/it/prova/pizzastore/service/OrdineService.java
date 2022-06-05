@@ -7,22 +7,22 @@ import it.prova.pizzastore.model.Ordine;
 
 public interface OrdineService {
 	public void setOrdineDAO(OrdineDAO ordineDAO);
-	
+
 	public List<Ordine> listAll() throws Exception;
-	
+
 	public Ordine caricaSingoloElemento(Long id) throws Exception;
-	
+
 	public void aggiorna(Ordine ordineInstance) throws Exception;
-	
+
 	public void inserisci(Ordine ordineInstance) throws Exception;
-	
+
 	public void rimuovi(Long idOrdine) throws Exception;
-	
+
 	public Ordine caricaElementoEager(Long id) throws Exception;
-	
+
 	public List<Ordine> findByExample(Ordine input) throws Exception;
-	
+
 	public List<Ordine> trovaOrdiniAperti(Long id) throws Exception;
-	
+
 	public void chiudiOrdine(Long id) throws Exception;
 }

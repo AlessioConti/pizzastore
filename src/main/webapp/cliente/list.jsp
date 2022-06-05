@@ -9,7 +9,7 @@
 	 	<!-- Common imports in pages -->
 	 	<jsp:include page="../header.jsp" />
 	   
-	   <title>Pagina dei Risultati</title>
+	   <title>Clienti Attivi</title>
 	 </head>
 	 
 	<body class="d-flex flex-column h-100">
@@ -35,10 +35,10 @@
 		  
 		  		<div class='card'>
 				    <div class='card-header'>
-				        <h5>Lista dei risultati</h5> 
+				        <h5>Lista dei Clienti Attivi</h5> 
 				    </div>
 				    <div class='card-body'>
-				    	<a class="btn btn-primary " href="PrepareInsertClienteServlet">Add New</a>
+				    	<a class="btn btn-primary " href="PrepareInsertClienteServlet">Nuovo Cliente</a>
 				    
 				        <div class='table-responsive'>
 				            <table class='table table-striped ' >

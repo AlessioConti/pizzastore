@@ -16,20 +16,22 @@ import it.prova.pizzastore.service.MyServiceFactory;
 public class ExecuteDeletePizzaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String idPizza = request.getParameter("idPizza");
-		
+
 		if (!NumberUtils.isCreatable(idPizza)) {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}
-		
+
 		try {
 			MyServiceFactory.getPizzaServiceInstance().rimuovi(Long.parseLong(idPizza));
-		}catch (ElementNotFoundException e) {
-			request.getRequestDispatcher("ExecuteListPizzeServlet?operationResult=NOT_FOUND").forward(request, response);
+		} catch (ElementNotFoundException e) {
+			request.getRequestDispatcher("ExecuteListPizzeServlet?operationResult=NOT_FOUND").forward(request,
+					response);
 			return;
 		} catch (Exception e) {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
@@ -38,7 +40,7 @@ public class ExecuteDeletePizzaServlet extends HttpServlet {
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}
-		
+
 		response.sendRedirect("ExecuteListPizzeServlet?operationResult=SUCCESS");
 	}
 

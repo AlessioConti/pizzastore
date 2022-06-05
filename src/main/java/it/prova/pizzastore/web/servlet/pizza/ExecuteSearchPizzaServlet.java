@@ -21,8 +21,7 @@ public class ExecuteSearchPizzaServlet extends HttpServlet {
 		String descrizioneParam = request.getParameter("descrizione");
 		String ingredientiParam = request.getParameter("ingredienti");
 		String prezzoBaseParam = request.getParameter("prezzo");
-		Pizza example = UtilityForm.createPizzaFromParas(descrizioneParam, ingredientiParam,
-				prezzoBaseParam);
+		Pizza example = UtilityForm.createPizzaFromParas(descrizioneParam, ingredientiParam, prezzoBaseParam);
 
 		try {
 			request.setAttribute("pizze_list_attribute",

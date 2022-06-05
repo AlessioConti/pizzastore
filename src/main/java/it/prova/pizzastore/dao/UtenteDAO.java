@@ -6,8 +6,6 @@ import java.util.Optional;
 import it.prova.pizzastore.model.Ruolo;
 import it.prova.pizzastore.model.Utente;
 
-
-
 public interface UtenteDAO extends IBaseDAO<Utente> {
 
 	public List<Utente> findAllByRuolo(Ruolo ruoloInput) throws Exception;
@@ -15,6 +13,6 @@ public interface UtenteDAO extends IBaseDAO<Utente> {
 	public Optional<Utente> findByUsernameAndPassword(String username, String password) throws Exception;
 
 	public Optional<Utente> login(String username, String password) throws Exception;
-	
+
 	public List<Utente> findAllFattorini() throws Exception;
 }

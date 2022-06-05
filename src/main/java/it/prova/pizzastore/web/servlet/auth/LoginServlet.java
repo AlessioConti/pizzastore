@@ -38,27 +38,27 @@ public class LoginServlet extends HttpServlet {
 		try {
 			Utente utenteInstance = MyServiceFactory.getUtenteServiceInstance().accedi(loginInput, passwordInput);
 			if (utenteInstance == null) {
-				
+
 				request.setAttribute("errorMessage", "Utente non trovato.");
 				destinazione = "login.jsp";
-				
+
 			} else if (utenteInstance.isAdmin()) {
-				
+
 				request.getSession().setAttribute("userInfo", utenteInstance);
 				destinazione = "/admin/index.jsp";
-				
+
 			} else if (utenteInstance.isPizzaiolo()) {
-				
+
 				request.getSession().setAttribute("userInfo", utenteInstance);
 				destinazione = "/pizzaiolo/index.jsp";
-				
+
 			} else if (utenteInstance.isFattorino()) {
-				
+
 				request.getSession().setAttribute("userInfo", utenteInstance);
 				destinazione = "/fattorino/index.jsp";
-				
+
 			} else {
-				
+
 				destinazione = "login.jsp";
 				request.setAttribute("errorMessage", "Attenzione! Si è verificato un errore di login.");
 			}

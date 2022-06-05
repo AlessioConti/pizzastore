@@ -68,7 +68,7 @@
 								<input type="hidden" name="idCliente" value="${update_cliente_attr.id }"> 
 								
 								<div class="col-12">
-									<button type="submit" name="updateSubmit" value="updateSubmit" id="updateSubmit" class="btn btn-primary">Modifica</button>
+									<button type="submit" name="updateSubmit" value="updateSubmit" id="updateSubmit" class="btn btn-primary">Aggiorna</button>
 								</div>
 		
 						</form>
